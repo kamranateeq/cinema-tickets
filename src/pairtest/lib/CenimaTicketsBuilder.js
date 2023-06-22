@@ -2,6 +2,7 @@ import ticketRequest from '../lib/TicketTypeRequest.js';
 import seatReservation from '../../../src/thirdparty/seatbooking/SeatReservationService.js';
 import ticketPaymentRequest from '../../thirdparty/paymentgateway/TicketPaymentService.js';
 import bussinessRules from './BussinessRules.js';
+import TicketService from '../TicketService.js';
 
 
 export default class CenimaTicketsBuilder {
@@ -27,7 +28,7 @@ export default class CenimaTicketsBuilder {
      return this.TotalSeats;
     }
     calculateTotalCost() {
-        var totalCost = (this.adult*this.adultTicketPrice)+(this.child*this.childTicketPrice)+(this.infant*this.infantTicketPrice);
+     var totalCost = (this.adult*this.adultTicketPrice)+(this.child*this.childTicketPrice)+(this.infant*this.infantTicketPrice);
      return totalCost;
     }
 
@@ -53,6 +54,10 @@ export default class CenimaTicketsBuilder {
     var ticketRequestAdult = new ticketRequest('ADULT',adultTicket);
     var ticketRequestCHILD = new ticketRequest('CHILD',childTicket);
     var ticketRequestINFANT = new ticketRequest('INFANT',infantTicket);
+    var ticketService = new TicketService()
+    ticketService.purchaseTickets(this.accountID,ticketRequestAdult);
+    ticketService.purchaseTickets(this.accountID,ticketRequestCHILD);
+    ticketService.purchaseTickets(this.accountID,ticketRequestINFANT);
     
     // creating request for ticket payment
     var ticketPayment = new ticketPaymentRequest();
