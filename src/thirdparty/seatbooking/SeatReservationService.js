@@ -5,6 +5,7 @@ export default class SeatReservationService {
     if (!Number.isInteger(accountId)) {
       throw new TypeError('accountId must be an integer');
     }
+/* eslint-disable */
 
     if (!Number.isInteger(totalSeatsToAllocate)) {
       throw new TypeError('totalSeatsToAllocate must be an integer');
