@@ -1,1 +1,2 @@
-This is test project
+This is test project.
+Also this is test.
